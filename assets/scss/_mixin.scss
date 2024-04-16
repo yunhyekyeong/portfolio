@@ -1,0 +1,31 @@
+// 반응형
+
+$mobileMax: 430px;
+$ipad: 768px;
+$ipadAir: 820px;
+$ipadPro: 1024px;
+$pcMin: 1025px;
+
+@mixin mobile {
+  @media (max-width: $mobileMax){
+    @content;
+  }
+}
+
+@mixin tabletMob {
+  @media (max-width: $ipadPro){
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media ((min-width: $ipad) and (max-width: $ipadPro)){
+    @content;
+  }
+}
+
+@mixin pc {
+  @media (min-width: $pcMin){
+    @content;
+  }
+}

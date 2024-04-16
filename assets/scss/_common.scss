@@ -1,0 +1,42 @@
+:root {
+  --txtmain: #fff;
+}
+
+.wapper {
+  position: relative;
+}
+
+.main {
+  position: relative;
+}
+
+[data-theme="dark"] {
+  background-color: #000;
+  color: var(--txtmain);
+}
+
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  margin: -1px;
+}
+
+
+
+.sc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid #000;
+  text-transform: uppercase;
+}
+
+.pc {
+  @include tabletMob {
+    display: none;
+  }
+}
