@@ -70,6 +70,7 @@ ScrollTrigger.matchMedia({
         end: "250% 0%",
         pin: true,
         scrub: 1,
+        invalidateOnRefresh: true,
         // markers: true,
       },
       ease: "none",
@@ -100,8 +101,6 @@ const goalTl = gsap.timeline({
   ease: "none",
 });
 goalTl.to(".sc-goal .text .char", {opacity: 1,stagger: 0.1,duration: 1,});
-
-
 
 
 
