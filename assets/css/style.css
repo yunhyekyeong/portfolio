@@ -159,12 +159,15 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   color: #000;
 }
+.header.invert .gnb .gnb-list li::after {
+  background-color: #000;
+}
 .header .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 128px;
+  height: 80px;
   padding: 0 45px 0 49px;
 }
 @media (max-width: 430px) {
@@ -189,30 +192,30 @@ body {
   }
 }
 .header .gnb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
-  top: -100%;
-  left: 50%;
+  top: 0;
+  left: 0;
   z-index: -1;
-  transform: translateX(-50%);
-  width: 70%;
-  padding: 80px 30px;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   color: #fff;
-  border-radius: 0 0 8vw 8vw;
-  transition: top 0.5s ease-out;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-out;
   font-size: 2vw;
   font-weight: 300;
 }
 @media (max-width: 430px) {
   .header .gnb {
-    width: 100%;
     font-size: 20px;
-    padding: 50px 30px;
   }
 }
 .header .gnb.active {
-  top: 0;
+  transform: translateY(0);
 }
 .header .gnb .gnb-list {
   display: flex;
@@ -220,6 +223,25 @@ body {
   justify-content: space-between;
   flex-direction: column;
   gap: 2vw;
+}
+.header .gnb .gnb-list li {
+  position: relative;
+}
+.header .gnb .gnb-list li::after {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  content: "";
+  opacity: 0;
+  transition: 0.3s;
+  transform: translateY(10px);
+}
+.header .gnb .gnb-list li:hover::after, .header .gnb .gnb-list li:focus::after {
+  opacity: 1;
+  transform: translateY(0px);
 }
 
 .gnb-btn {
@@ -238,13 +260,62 @@ body {
   height: 3px;
   background-color: #fff;
   border-radius: 10px;
-  transition: 0.5s;
+}
+.gnb-btn span:nth-of-type(1) {
+  animation: barAni_1 1s;
+}
+.gnb-btn span:nth-of-type(2) {
+  animation: barAni2_1 1s;
+}
+@keyframes barAni {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(3.5px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+}
+@keyframes barAni_1 {
+  0% {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+  50% {
+    transform: translateY(3.5px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+@keyframes barAni2 {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3.5px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+}
+@keyframes barAni2_1 {
+  0% {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+  50% {
+    transform: translateY(-3.5px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
 .gnb-btn.active span:nth-of-type(1) {
-  transform: rotate(-135deg);
+  animation: barAni 0.3s linear forwards;
 }
 .gnb-btn.active span:nth-of-type(2) {
-  transform: translateY(-6px) rotate(135deg);
+  animation: barAni2 0.3s linear forwards;
 }
 .gnb-btn.invert span {
   background-color: #000;
@@ -384,7 +455,7 @@ body {
   justify-content: space-between;
   width: 100%;
   height: 100vh;
-  padding: 4vw 0 1.5vw;
+  padding: 3vw 0;
   background-color: #000;
   color: #fff;
   overflow: hidden;
@@ -423,7 +494,7 @@ body {
 }
 .sc-main .big-tit {
   font-family: "Kalnia";
-  font-size: 13vw;
+  font-size: clamp(2.975rem, 13vw, 13.8rem);
   font-weight: 500;
   text-align: center;
   text-transform: uppercase;
@@ -486,6 +557,11 @@ body {
 @media (min-width: 1025px) {
   .sc-project .project {
     overflow: hidden;
+  }
+}
+@media (max-width: 1024px) {
+  .sc-project .project {
+    padding: 30px 0;
   }
 }
 .sc-project .list {
@@ -553,7 +629,7 @@ body {
   }
 }
 .sc-project .content .text .left {
-  margin-left: 10px;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -562,6 +638,7 @@ body {
   .sc-project .content .text .left {
     flex-direction: row;
     gap: 10px;
+    margin-left: 0;
   }
 }
 .sc-project .content .text .left a {
@@ -570,6 +647,15 @@ body {
   padding: 10px;
   text-align: center;
   margin-top: 20px;
+}
+@media (min-width: 1025px) {
+  .sc-project .content .text .left a {
+    transition: 0.3s;
+  }
+  .sc-project .content .text .left a:hover {
+    background-color: #000;
+    color: #fff;
+  }
 }
 @media (max-width: 1024px) {
   .sc-project .content .text .left a {
@@ -641,6 +727,36 @@ body {
   width: 100%;
   border-bottom: 1px solid #ddd;
 }
+@media (min-width: 1025px) {
+  .sc-work .inner .list .item {
+    position: relative;
+  }
+  .sc-work .inner .list .item::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s 0.1s;
+    mix-blend-mode: difference;
+    border-radius: 20px;
+    pointer-events: none;
+  }
+  .sc-work .inner .list .item:hover::before {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  .sc-work .inner .list .item:hover a {
+    border-top: 1px solid #fff;
+  }
+  .sc-work .inner .list .item:hover + li a {
+    border-top: 1px solid #fff;
+  }
+}
 .sc-work .inner .list .item a {
   display: flex;
   align-items: start;
@@ -649,15 +765,36 @@ body {
   padding: 1.8vw 1vw;
   border-top: 1px solid #ddd;
 }
+@media (max-width: 430px) {
+  .sc-work .inner .list .item a {
+    padding: 16px 1vw;
+  }
+}
+.sc-work .inner .list .item .num span {
+  display: inline-block;
+  border: 1px solid #000;
+  font-size: 13px;
+  margin-left: 4px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  line-height: 1;
+}
+@media (max-width: 1024px) {
+  .sc-work .inner .list .item .num span {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+}
 .sc-work .inner .list .item .tit {
   font-size: clamp(1.8rem, 10vw, 4.375rem);
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 500;
   font-family: "LINESeedKR";
 }
 @media (max-width: 430px) {
   .sc-work .inner .list .item .desc {
     font-size: clamp(0.75rem, 3.2558vw, 0.875rem);
+    line-height: 1.3;
   }
 }
 
@@ -702,12 +839,12 @@ body {
     font-size: clamp(1.5rem, 4.5vw, 5.25rem);
   }
 }
-.sc-goal .inner .text .word:nth-of-type(8), .sc-goal .inner .text .word:nth-of-type(19) {
+.sc-goal .inner .text .word:nth-of-type(9), .sc-goal .inner .text .word:nth-of-type(21) {
   font-size: 46px;
   border: 3px solid #000;
   border-radius: 50%;
   text-transform: uppercase;
-  padding: 10px;
+  padding: 4px 20px;
 }
 .sc-goal .inner .text .char {
   opacity: 0.05;
