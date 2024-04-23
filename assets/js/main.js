@@ -12,19 +12,18 @@ gsap.ticker.lagSmoothing(0);
 
 
 
-const introTl = gsap.timeline({
-});
-introTl.from(".sc-main .big-tit span", {
-  autoAlpha: 0,
-  rotationX: -90,
-  yPercent: 100,
-  scale: 0.75,
-  fontWeight: 100,
-  stagger: 0.1,
-  duration: 1,
-  delay: 1,
-  ease: "power4.out",
-});
+
+gsap.from(".sc-main .big-tit span", {
+    autoAlpha: 0,
+    rotationX: -90,
+    yPercent: 100,
+    scale: 0.75,
+    fontWeight: 100,
+    stagger: 0.1,
+    duration: 1,
+    delay: 1,
+    ease: "power4.out",
+  });
 
 
 

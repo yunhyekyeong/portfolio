@@ -510,6 +510,7 @@ body {
   }
 }
 .sc-main .big-tit span {
+  visibility: hidden;
   display: inline-block;
   transform: perspective(5em);
 }
