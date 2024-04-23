@@ -19,9 +19,9 @@ gsap.from(".sc-main .big-tit span", {
     yPercent: 100,
     scale: 0.75,
     fontWeight: 100,
-    stagger: 0.1,
-    duration: 1,
-    delay: 1,
+    stagger: 0.5,
+    duration: 1.3,
+    delay: 0.3,
     ease: "power4.out",
   });
 
