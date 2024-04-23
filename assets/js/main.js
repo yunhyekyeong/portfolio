@@ -12,9 +12,10 @@ gsap.ticker.lagSmoothing(0);
 
 
 
-
-gsap.from(".sc-main .big-tit span", {
-  opacity: 0,
+const introTl = gsap.timeline({
+});
+introTl.from(".sc-main .big-tit span", {
+  autoAlpha: 0,
   rotationX: -90,
   yPercent: 100,
   scale: 0.75,
