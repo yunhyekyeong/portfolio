@@ -10,22 +10,24 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
+ScrollTrigger.saveStyles(".mobile, .desktop");
 
 
-
-gsap.from(".sc-main .big-tit span", {
-    autoAlpha: 0,
-    rotationX: -90,
-    yPercent: 100,
-    scale: 0.75,
-    fontWeight: 100,
-    stagger: 0.4,
-    duration: 1.3,
-    delay: 0.3,
-    ease: "power4.out",
-  });
-
-
+ScrollTrigger.matchMedia({
+  "(min-width: 1025px)": function () {
+    const introTl = gsap.timeline({});
+    introTl.from(".sc-main .big-tit span", {
+      autoAlpha: 0,
+      rotationX: -90,
+      yPercent: 100,
+      scale: 0.75,
+      fontWeight: 100,
+      stagger: 0.4,
+      duration: 1.3,
+      delay: 0.3,
+      ease: "power4.out",
+    });}
+})
 
 
 const mainTl = gsap.timeline({
@@ -34,6 +36,7 @@ const mainTl = gsap.timeline({
     start: "0% 0%",
     end: "150% 0%",
     scrub: 0,
+    invalidateOnRefresh: true,
     pin: true,
     // markers: true,
     onLeave: function () {
@@ -50,15 +53,10 @@ const mainTl = gsap.timeline({
 mainTl
   .to(".sc-main .big-tit .left", { xPercent: -130 }, "a")
   .to(".sc-main .big-tit .right", { xPercent: 140 }, "a")
-  .fromTo(".sc-main .big-tit .top", { yPercent: 0 }, { yPercent: -100 }, "b")
-  .to(".sc-main .inner",
-    { color: "#000", backgroundColor: "#fff", duration: 1 },"c"
-  )
+  .fromTo(".sc-main .big-tit .top", { yPercent: 0 }, { yPercent: -100 },"b")
+  .to(".sc-main .inner", { color: "#000", backgroundColor: "#fff", duration: 1 },"c")
   .to(".sc-main .big-tit", { mixBlendMode: "normal", duration: 1 }, "c")
 ;
-
-
-
 
 
 ScrollTrigger.matchMedia({
@@ -67,23 +65,22 @@ ScrollTrigger.matchMedia({
       scrollTrigger: {
         trigger: ".sc-project .box",
         start: "0% 0%",
-        end: "250% 0%",
+        end: "400% 0%",
         pin: true,
-        scrub: 1,
+        scrub: 5,
         invalidateOnRefresh: true,
         // markers: true,
       },
       ease: "none",
     });
     projectTl.to(".project .list", {
-      xPercent: -100,
+      xPercent: -100.1,
       x: function () {
-        return window.innerWidth - 180;
+        return window.innerWidth - 181;
       },
     });
-  },
+  }
 });
-
 
 
 
@@ -100,7 +97,11 @@ const goalCharTl = gsap.timeline({
   },
   ease: "none",
 });
-goalCharTl.from(".sc-goal .text .char", { opacity: 0.05, stagger: 0.1, duration: 1, }, "a");
+goalCharTl.from(
+  ".sc-goal .text .char",
+  { opacity: 0.05, stagger: 0.1, duration: 1 },
+  "a"
+);
 
 const goalWordTl = gsap.timeline({
   scrollTrigger: {
@@ -112,9 +113,11 @@ const goalWordTl = gsap.timeline({
   },
   ease: "none",
 });
-goalWordTl.from(".sc-goal .text .word", { opacity: 0.05, stagger: 0.1 }, "a");
-
-
+goalWordTl.from(
+  ".sc-goal .text .word",
+  { opacity: 0.05, stagger: 0.1 },
+  "a"
+);
 
 const cursor = document.querySelector(".cursor");
 document.addEventListener("mousemove", (e) => {
@@ -162,3 +165,5 @@ setInterval(() => {
   const now = `${year}/${month}/${date}/${day}/${hours}:${minutes}:${seconds}`;
   document.querySelector(".time").innerHTML = now;
 }, 1000);
+
+
