@@ -215,8 +215,11 @@
           white-space: nowrap;
           pointer-events: none;
           @include tabletMob {
-            font-size: 13.672vw;
+            font-size: 14vw;
             line-height: 1;
+          }
+          @include mobile {
+            font-size: 16vw;
           }
         }
       }

@@ -681,8 +681,13 @@ body {
 }
 @media (max-width: 1024px) {
   .sc-project .content .text .left .tit {
-    font-size: 13.672vw;
+    font-size: 14vw;
     line-height: 1;
+  }
+}
+@media (max-width: 430px) {
+  .sc-project .content .text .left .tit {
+    font-size: 16vw;
   }
 }
 .sc-project .project-bottom {
