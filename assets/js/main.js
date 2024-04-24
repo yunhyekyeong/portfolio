@@ -19,7 +19,7 @@ gsap.from(".sc-main .big-tit span", {
     yPercent: 100,
     scale: 0.75,
     fontWeight: 100,
-    stagger: 0.5,
+    stagger: 0.4,
     duration: 1.3,
     delay: 0.3,
     ease: "power4.out",
@@ -90,7 +90,7 @@ ScrollTrigger.matchMedia({
 const goalText = new SplitType(".sc-goal .text", {
   types: "words chars",
 });
-const goalTl = gsap.timeline({
+const goalCharTl = gsap.timeline({
   scrollTrigger: {
     trigger: ".sc-goal",
     start: "0% 50%",
@@ -100,7 +100,19 @@ const goalTl = gsap.timeline({
   },
   ease: "none",
 });
-goalTl.to(".sc-goal .text .char", {opacity: 1,stagger: 0.1,duration: 1,});
+goalCharTl.from(".sc-goal .text .char", { opacity: 0.05, stagger: 0.1, duration: 1, }, "a");
+
+const goalWordTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".sc-goal",
+    start: "0% 50%",
+    end: "100% 100%",
+    scrub: 0,
+    // markers: true,
+  },
+  ease: "none",
+});
+goalWordTl.from(".sc-goal .text .word", { opacity: 0.05, stagger: 0.1 }, "a");
 
 
 
