@@ -56,6 +56,9 @@
       visibility: hidden;
       display: inline-block;
       transform: perspective(5em);
+      @include tabletMob {
+        visibility: visible;
+      }
     }
     .left,
     .right {
@@ -108,7 +111,7 @@
     }
     @include tabletMob {
       flex-direction: column;
-      gap: 50px;
+      gap: 80px;
       width: 100%;
     }
   }
@@ -116,6 +119,9 @@
     position: relative;
     width: 100%;
     @include pc {
+      &:nth-of-type(1) {
+        padding-left: 10px;
+      }
       &:nth-of-type(2n-2) {
         .content {
           display: flex;
@@ -139,9 +145,18 @@
       width: 900px;
       height: 450px;
       border: 1px solid #ddd;
+      @include pc {
+        &:hover {
+          img {
+            transform: scale(1.2);
+          }
+        }
+      }
       @include tabletMob {
         width: 100%;
-        height: auto;
+      }
+      @include mobile {
+        height: 300px;
       }
       figure {
         width: 100%;
@@ -154,73 +169,75 @@
           transition: 0.3s;
         }
       }
-      &:hover {
-        img {
-          transform: scale(1.2);
-        }
-      }
     }
     .text {
-      .right {
-        display: none;
-        @include tabletMob {
-          display: flex;
-          justify-content: flex-end;
-          gap: 10px;
+      .num {
+        margin: 5px 0 10px;
+        @include mobile {
+          font-size: 14px;
+          margin: 5px 0 0;
         }
-        a {
-          display: block;
-          border: 1px solid #000;
-          text-align: center;
-          margin-top: 20px;
-          padding: 2vw;
-          font-size: clamp(1rem, 3vw, 3rem);
+        br {
+          display: none;
+          @include mobile {
+            display: block;
+          }
         }
       }
-      .left {
-        .desc {
-          display: flex;
-          align-items: center;
-          margin: 5px 0 10px;
-          .num {
-            br {
-              @include pc {
-                display: none;
-              }
-            }
-          }
-          .review-pc {
-            margin-left: 10px;
-            font-size: 20px;
-            padding: 1px 14px;
-            border: 1px solid #000;
-            border-radius: 20px;
-            transition: 0.3s;
-            pointer-events: all;
+      .desc {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include mobile {
+          flex-direction: column;
+          align-items: start;
+          justify-content: flex-start;
+        }
+        .review-pc {
+          font-size: 20px;
+          padding: 12px 20px;
+          border: 1px solid #000;
+          transition: 0.3s;
+          text-align: center;
+          @include pc {
             &:hover {
               background-color: #000;
               color: #fff;
             }
-            @include tabletMob {
+          }
+          @include mobile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 40px;
+            padding: 0 0;
+            margin-top: 16px;
+            font-size: 16px;
+            background-color: #000;
+            color: #fff;
+          }
+          br {
+            @include mobile {
               display: none;
             }
           }
         }
-        .tit {
-          font-size: 9vw;
-          font-weight: 500;
-          text-transform: uppercase;
-          line-height: 0.8;
-          text-align: left;
-          white-space: nowrap;
-          pointer-events: none;
-          @include tabletMob {
-            font-size: 14vw;
-            line-height: 1;
-          }
-          @include mobile {
-            font-size: 16vw;
-          }
+      }
+      .tit {
+        font-size: 7vw;
+        font-weight: 500;
+        text-transform: uppercase;
+        line-height: 0.8;
+        text-align: left;
+        white-space: nowrap;
+        pointer-events: none;
+        line-height: 1;
+        @include tabletMob {
+          font-size: 12vw;
+        }
+        @include mobile {
+          font-size: 14vw;
         }
       }
     }
@@ -378,6 +395,10 @@
           border-radius: 50%;
           text-transform: uppercase;
           padding: 4px 20px;
+          @include tabletMob {
+            border: 2px solid #000;
+            font-size: clamp(1.5rem, 2.6247vw, 5.25rem);
+          }
         }
       }
     }
