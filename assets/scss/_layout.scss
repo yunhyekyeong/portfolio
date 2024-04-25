@@ -8,22 +8,21 @@
   color: #fff;
   font-size: 1vw;
   font-weight: 500;
-  &.invert {
-    color: #000;
-    @include mobile {
-      background-color: #fff;
-    }
-    .logo {
-      border: 1px solid #000;
-      background-color: #fff;
-    }
-    .gnb {
-      background-color: rgba($color: #fff, $alpha: 0.8);
+  @include pc {
+    &.invert {
       color: #000;
-      .gnb-list {
-        li {
-          &::after {
-            background-color: #000;
+      .logo {
+        border: 1px solid #000;
+        background-color: #fff;
+      }
+      .gnb {
+        background-color: rgba($color: #fff, $alpha: 0.8);
+        color: #000;
+        .gnb-list {
+          li {
+            &::after {
+              background-color: #000;
+            }
           }
         }
       }
@@ -36,9 +35,12 @@
     width: 100%;
     height: 80px;
     padding: 0 45px 0 49px;
+    @include tabletMob {
+      padding: 0 16px;
+      height: 60px;
+    }
     @include mobile {
       height: 50px;
-      padding: 0 16px;
     }
   }
   .logo {
@@ -71,6 +73,9 @@
     transition: transform 0.5s ease-out;
     font-size: 2vw;
     font-weight: 300;
+    @include tablet {
+      font-size: 7vw;
+    }
     @include mobile {
       font-size: 10vw;
     }
@@ -102,6 +107,25 @@
         &:focus::after {
           opacity: 1;
           transform: translateY(0px);
+        }
+      }
+    }
+  }
+  @include tabletMob {
+    background-color: #fff;
+    color: #000;
+    .logo {
+      border: 1px solid #000;
+      background-color: #fff;
+    }
+    .gnb {
+      background-color: rgba($color: #fff, $alpha: 0.8);
+      color: #000;
+      .gnb-list {
+        li {
+          &::after {
+            background-color: #000;
+          }
         }
       }
     }
@@ -191,10 +215,14 @@
       background-color: #000;
     }
   }
+  @include tabletMob {
+    span {
+      background-color: #000;
+    }
+  }
 }
 
 .footer {
-  background-color: #fff;
   .inner {
     position: relative;
     display: flex;
