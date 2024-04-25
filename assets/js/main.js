@@ -10,8 +10,9 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
-ScrollTrigger.saveStyles(".mobile, .desktop");
-
+const goalText = new SplitType(".sc-goal .text", {
+  types: "words chars",
+});
 
 ScrollTrigger.matchMedia({
   "(min-width: 1025px)": function () {
@@ -26,41 +27,36 @@ ScrollTrigger.matchMedia({
       duration: 1.3,
       delay: 0.3,
       ease: "power4.out",
-    });}
-})
+    });
 
-
-const mainTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".sc-main .inner",
-    start: "0% 0%",
-    end: "150% 0%",
-    scrub: 0,
-    invalidateOnRefresh: true,
-    pin: true,
-    // markers: true,
-    onLeave: function () {
-      document.querySelector(".header").classList.add("invert");
-      document.querySelector(".gnb-btn").classList.add("invert");
+    const mainTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".sc-main .inner",
+      start: "0% 0%",
+      end: "150% 0%",
+      scrub: 0,
+      invalidateOnRefresh: true,
+      pin: true,
+      // markers: true,
+      onLeave: function () {
+        document.querySelector(".header").classList.add("invert");
+        document.querySelector(".gnb-btn").classList.add("invert");
+      },
+      onEnterBack: function () {
+        document.querySelector(".header").classList.remove("invert");
+        document.querySelector(".gnb-btn").classList.remove("invert");
+      },
     },
-    onEnterBack: function () {
-      document.querySelector(".header").classList.remove("invert");
-      document.querySelector(".gnb-btn").classList.remove("invert");
-    },
-  },
-  ease: "none",
-});
-mainTl
-  .to(".sc-main .big-tit .left", { xPercent: -130 }, "a")
-  .to(".sc-main .big-tit .right", { xPercent: 140 }, "a")
-  .fromTo(".sc-main .big-tit .top", { yPercent: 0 }, { yPercent: -100 },"b")
-  .to(".sc-main .inner", { color: "#000", backgroundColor: "#fff", duration: 1 },"c")
-  .to(".sc-main .big-tit", { mixBlendMode: "normal", duration: 1 }, "c")
-;
-
-
-ScrollTrigger.matchMedia({
-  "(min-width: 1025px)": function () {
+    ease: "none",
+    });
+    mainTl
+      .to(".sc-main .big-tit .left", { xPercent: -130 }, "a")
+      .to(".sc-main .big-tit .right", { xPercent: 140 }, "a")
+      .fromTo(".sc-main .big-tit .top", { yPercent: 0 }, { yPercent: -100 },"b")
+      .to(".sc-main .inner", { color: "#000", backgroundColor: "#fff", duration: 1 },"c")
+      .to(".sc-main .big-tit", { mixBlendMode: "normal", duration: 1 }, "c")
+    ;
+    
     const projectTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".sc-project .box",
@@ -79,45 +75,47 @@ ScrollTrigger.matchMedia({
         return window.innerWidth - 181;
       },
     });
+
+
+
+
+    const goalCharTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".sc-goal",
+        start: "0% 50%",
+        end: "100% 100%",
+        scrub: 0,
+        // markers: true,
+      },
+      ease: "none",
+    });
+    goalCharTl.from(
+      ".sc-goal .text .char",
+      { opacity: 0.05, stagger: 0.1, duration: 1 },
+      "a"
+    );
+
+    const goalWordTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".sc-goal",
+        start: "0% 50%",
+        end: "100% 100%",
+        scrub: 0,
+        // markers: true,
+      },
+      ease: "none",
+    });
+    goalWordTl.from(
+      ".sc-goal .text .word",
+      { opacity: 0.05, stagger: 0.1 },
+      "a"
+    );
   }
-});
+})
 
 
 
-const goalText = new SplitType(".sc-goal .text", {
-  types: "words chars",
-});
-const goalCharTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".sc-goal",
-    start: "0% 50%",
-    end: "100% 100%",
-    scrub: 0,
-    // markers: true,
-  },
-  ease: "none",
-});
-goalCharTl.from(
-  ".sc-goal .text .char",
-  { opacity: 0.05, stagger: 0.1, duration: 1 },
-  "a"
-);
 
-const goalWordTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".sc-goal",
-    start: "0% 50%",
-    end: "100% 100%",
-    scrub: 0,
-    // markers: true,
-  },
-  ease: "none",
-});
-goalWordTl.from(
-  ".sc-goal .text .word",
-  { opacity: 0.05, stagger: 0.1 },
-  "a"
-);
 
 const cursor = document.querySelector(".cursor");
 document.addEventListener("mousemove", (e) => {
